@@ -5,6 +5,12 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+    // Enable CORS with specific settings
+  app.enableCors({
+    origin: true, 
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true
+  });
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
